@@ -30,10 +30,18 @@ pip3 install -r requirements.txt
 ```python
 from engine import DMEngine
 
-# 初始化引擎
+# 可选步骤，申请管理员权限运行
+DMEngine.run_as_admin()
+# 初始化引擎，或者不使用 reg_code 和 ver_info 参数，在脚本目录下任意位置放 reg_code.txt 文件分行贴入注册码和附加码，脚本会自动识别
 engine = DMEngine.load_dm(
     reg_code='<注册码，不带尖括号>',
     ver_info='<附加码，不带尖括号>',
+)
+# 如果不想使用引擎，可以使用单独的 DM 对象
+image = DMImage.load_dm(
+    reg_code='<注册码，不带尖括号>',
+    ver_info='<附加码，不带尖括号>',
+    'image_name',
 )
 
 # 创建 DMImage 对象，image_name 为图片路径，可以是单个，也可以是多个
@@ -69,7 +77,7 @@ image.xfind().xclick().sleep(3).xclick(butn='M')
 - A：很多，可以自查源代码，使用 VSCODE 的大纲视图可以快速浏览现在有什么函数
 
 - Q：大漠插件的目录怎么配置？
-- A：参考 DMEngine.load_dm 的函数说明，配置 path_plugin 参数即可，默认搜索脚本所在的当前目录
+- A：参考 load_dm() 的函数说明，配置 path_plugin 参数即可，默认搜索脚本所在的当前目录
 
 - Q：需要先注册大漠插件吗？
-- A：可以注册可以不注册，不注册需要使用 DmReg.dll 文件，原版就会有这个文件，不用关心 dll 文件放置的位置只要在脚本目录下，脚本会自动搜索
+- A：可以注册可以不注册，不注册需要使用 DmReg.dll 文件，只要 dll 文件在脚本目录下，脚本会自动搜索

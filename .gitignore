@@ -167,3 +167,4 @@ cython_debug/
 *.bmp
 plugins/*
 !plugins/readme.txt
+*.txt
